@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np 
 import pickle as pk 
 import streamlit as st
-from logisticRegression import Normal
 from logisticRegression import Ridge
+from logisticRegression import Normal
 
 
 model = pk.load(open('st125051-car-prediction-a3.pkl', 'rb'))
