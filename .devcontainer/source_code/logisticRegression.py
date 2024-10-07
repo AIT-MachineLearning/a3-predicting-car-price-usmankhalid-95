@@ -193,7 +193,7 @@ class LogisticRegression:
         return pd.DataFrame(report, index=idx, columns=cols)
     
 
-class RidgePenalty:
+class RidgePenalty(LogisticRegression):
     def __init__(self, l):
         self.l = l
 
