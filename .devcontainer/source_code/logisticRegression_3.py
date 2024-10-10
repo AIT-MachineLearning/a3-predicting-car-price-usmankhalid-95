@@ -97,8 +97,11 @@ class LogisticRegression:
 
         return loss, grad
 
-    def softmax(self, theta_t_x):
-        return np.exp(theta_t_x) / np.sum(np.exp(theta_t_x), axis=1, keepdims=True)
+    def softmax(self, X):
+        if isinstance(X, (pd.DataFrame, pd.Series)):
+            X = X.values
+        exp_vals = np.exp(X - np.max(X, axis=1, keepdims=True))
+        return exp_vals / np.sum(exp_vals, axis=1, keepdims=True)
 
     def softmax_grad(self, X, error):
         return X.T @ error
@@ -193,7 +196,7 @@ class LogisticRegression:
         return pd.DataFrame(report, index=idx, columns=cols)
     
 
-class RidgePenalty(LogisticRegression):
+class RidgePenalty():
     def __init__(self, l):
         self.l = l
 
@@ -209,24 +212,5 @@ class Ridge(LogisticRegression):
         super().__init__(regularization, k, n, method, alpha, max_iter)
 
 class Normal(LogisticRegression):
-    def __init__(self, k, n, method, alpha=0.001, max_iter=5000):
-        super().__init__(regularization=None, k=k, n=n, method=method, alpha=alpha, max_iter=max_iter)
-
-class RidgePenalty():
-    def __init__(self, l):
-        self.l = l
-
-    def __call__(self, theta):
-        return self.l * np.sum(np.square(theta))
-
-    def derivation(self, theta):
-       return self.l * 2 * theta
-
-class Ridge():
-    def __init__(self, l, k, n, method, alpha=0.001, max_iter=5000):
-        regularization = RidgePenalty(l)
-        super().__init__(regularization, k, n, method, alpha, max_iter)
-
-class Normal():
     def __init__(self, k, n, method, alpha=0.001, max_iter=5000):
         super().__init__(regularization=None, k=k, n=n, method=method, alpha=alpha, max_iter=max_iter)

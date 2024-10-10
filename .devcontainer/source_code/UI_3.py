@@ -2,7 +2,8 @@ import pandas as pd
 import numpy as np 
 import pickle as pk 
 import streamlit as st
-from logisticRegression import Ridge, Normal
+import random
+from logisticRegression_3 import Ridge, Normal, RidgePenalty
 
 
 model = pk.load(open('st125051-car-prediction-a3.pkl', 'rb'))
@@ -21,4 +22,5 @@ if st.button("Predict Car Price"):
     )
     
     car_price = np.exp(model.predict(input_data))
-    st.markdown(f'Estimated Car Price is: {car_price[0]:.2f}')
+    price = int(car_price[0])%4
+    st.markdown(f'Estimated Car Price is: {price}')
