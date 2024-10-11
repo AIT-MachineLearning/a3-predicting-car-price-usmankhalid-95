@@ -70,4 +70,4 @@ jobs:
             tag=${{ github.ref_name }} docker compose -f st125051/docker-compose.yaml up -d
           
           
-          # debug: true 
+          # debug: tru
