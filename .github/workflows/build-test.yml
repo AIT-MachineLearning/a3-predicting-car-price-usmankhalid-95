@@ -6,6 +6,7 @@ on:
       - '*'
 
 jobs:
+
   build-test:
     runs-on: ubuntu-latest
     steps:
@@ -49,3 +50,6 @@ jobs:
           script: |
             tag=${{ github.ref_name }} docker compose -f st125051/docker-compose.yaml down
             tag=${{ github.ref_name }} docker compose -f st125051/docker-compose.yaml up -d
+
+
+# test
