@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: "{{defaultContext}}:.streamlit"
-          file: .Streamlit/streamlit/Dockerfile.streamlit # Specify the correct path to Dockerfile.streamlit
+          file: .streamlit/streamlit/Dockerfile.streamlit # Specify the correct path to Dockerfile.streamlit
           push: true
           tags: ${{ steps.meta.outputs.tags }}
 
