@@ -5,7 +5,6 @@ import streamlit as st
 import random
 from logisticRegression_3 import Ridge, Normal, RidgePenalty
 
-
 model = pk.load(open('st125051-car-prediction-a3.pkl', 'rb'))
 
 st.header('ML Car Prediction A3 Assignment')
@@ -21,6 +20,5 @@ if st.button("Predict Car Price"):
         columns=['engine', 'mileage', 'year']
     )
     
-    car_price = np.exp(model.predict(input_data))
-    price = int(car_price[0])%4
-    st.markdown(f'Estimated Car Price is: {price}')
+    car_price = model.predict(input_data)
+    st.markdown(f'Estimated Car Price is : {car_price[0]}')
