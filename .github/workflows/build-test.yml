@@ -1,16 +1,35 @@
+# Name of this workflow
 name: Build-Test
+# Name of this run
 run-name: ${{ github.actor }} Building and Testing
+# When this action will be trigger
+# I want to do this when we push new change with tag.
+# This tag will be used next when we build and push the image to dockerhub
 on:
   push:
-    tags:
-      - '*'
+    branches:
+      - main
 
+# There can be multiple jobs
 jobs:
-
+  # Job name
   build-test:
+    # Target machine that this job will run on.
+    # ubuntu-latest or ubuntu-22.04 is the same image (as is August 2023)
     runs-on: ubuntu-latest
+    # Tasks, specify in list.
     steps:
-      - uses: actions/checkout@v4
+      # https://github.com/actions/checkout: will clone Git into the image
+      - uses: actions/checkout@v4   #library that's why is "uses"
+      # - name: Build the Docker image
+      #   run: docker compose build   # "run" is used as command line
+      #   working-directory: ./.streamlit
+  #     # - name: Compose up
+  #       run: docker compose up -d
+  #     # Execute pytest
+  #     - name: Testing
+  #       run: docker compose exec -it dash pytest --ignore=test_model_staging.py -v
+  #     # If the testing pass, upload the image
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -22,19 +41,18 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
+          # Your image name
           images: usmankhalidst125051/cara3
-          tags: |
-            type=semver,pattern={{version}}
-            type=ref,event=branch
+          tags: type=semver,pattern={{raw}}
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./.streamlit
+          context: "{{defaultContext}}:.streamlit"
           file: Dockerfile.streamlit
           push: true
           tags: ${{ steps.meta.outputs.tags }}
-
   deploy:
+    # environment: Production
     needs: build-test
     runs-on: ubuntu-latest
     steps:
@@ -50,6 +68,6 @@ jobs:
           script: |
             tag=${{ github.ref_name }} docker compose -f st125051/docker-compose.yaml down
             tag=${{ github.ref_name }} docker compose -f st125051/docker-compose.yaml up -d
-
-
-# test
+          
+          
+          # debug: tru
