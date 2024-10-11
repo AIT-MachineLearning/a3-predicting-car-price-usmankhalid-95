@@ -5,7 +5,7 @@ services:
     # This is for that asking the container to execute the main.py
     command: python3 app.py
     # The image I upload to my docker hub
-    image: usmankhalidst125051/assignment03:latest
+    image: usmankhalidst125051/cara3:latest
     # For MAC M1 user
     #platform: linux/x86_64
     # This will ask DASH to run on 0.0.0.0 and port 80
