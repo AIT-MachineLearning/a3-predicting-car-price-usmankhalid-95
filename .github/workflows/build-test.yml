@@ -39,13 +39,13 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Docker meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action
         with:
           # Your image name
           images: usmankhalidst125051/cara3
           tags: type=semver,pattern={{raw}}
       - name: Build and push
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action
         with:
           context: "{{defaultContext}}:.streamlit"
           file: Dockerfile.streamlit
