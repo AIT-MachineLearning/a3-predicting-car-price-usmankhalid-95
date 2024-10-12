@@ -49,9 +49,11 @@ jobs:
           host: ${{ vars.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.KEY_PASSPHRASE }}
           proxy_host: ${{ vars.PROXY_HOST }}
           proxy_username: ${{ secrets.USERNAME }}
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          proxy_passphrase: ${{ secrets.KEY_PASSPHRASE }}s
           script: |
             tag=${{ github.sha }} docker compose -f st125051/docker-compose.yaml down
             tag=${{ github.sha }} docker compose -f st125051/docker-compose.yaml up -d
