@@ -43,6 +43,8 @@ jobs:
     needs: build-test
     runs-on: ubuntu-latest
     steps:
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.1.0
         with:
