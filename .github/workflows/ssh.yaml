@@ -1,0 +1,27 @@
+name: ssh
+run-name: ${{ github.actor }} run ssh
+
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    needs: build-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.1.0
+        with:
+          host: bazooka.cs.ait.ac.th
+          username: st125051
+          password: ${{ secrets.PASSWORD }}
+          # host: ${{ vars.HOST }}
+          # username: ${{ secrets.USERNAME }}
+          # key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # passphrase: ${{ secrets.KEY_PASSPHRASE }}
+          # proxy_host: ${{ vars.PROXY_HOST }}
+          # proxy_username: ${{ secrets.USERNAME }}
+          # proxy_password: ${{ secrets.PASSWORD }}
+          script: |
+            pwd
