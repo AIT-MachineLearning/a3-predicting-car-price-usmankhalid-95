@@ -5,7 +5,6 @@ on: workflow_dispatch
 
 jobs:
   deploy:
-    needs: build-test
     runs-on: ubuntu-latest
     steps:
       - name: Setup tmate session
