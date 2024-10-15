@@ -14,7 +14,8 @@ jobs:
         with:
           host: bazooka.cs.ait.ac.th
           username: st125051
-          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.KEY_PASSPHRASE }}
           # host: ${{ vars.HOST }}
           # username: ${{ secrets.USERNAME }}
           # key: ${{ secrets.SSH_PRIVATE_KEY }}
