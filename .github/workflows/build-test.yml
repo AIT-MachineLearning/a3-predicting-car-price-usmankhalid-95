@@ -35,9 +35,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: . 
-          file: .streamlit/streamlit/Dockerfile.streamlit  # Correct file path
+          file: .Dockerfile  # Correct file path
           push: true
-          tags: usmankhalidst125051/cara3  # Update with your actual Docker tags
+          tags: usmankhalidst125051/cara3:latest  # Update with your actual Docker tags
 
   deploy:
     needs: build-test
@@ -56,6 +56,6 @@ jobs:
           proxy_passphrase: ${{ secrets.KEY_PASSPHRASE }}
           script: |
             echo "command running echo"
-            docker pull usmankhalidst125051/cara3 &&
+            docker pull usmankhalidst125051/cara3:latest &&
             cd /home/st125051/st125051
             tag=${{ github.sha }} docker compose -f docker-compose.yaml up -d
