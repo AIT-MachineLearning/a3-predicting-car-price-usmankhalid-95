@@ -35,7 +35,7 @@ jobs:
           context: . 
           file: Dockerfile  # Correct file path
           push: true
-          tags: usmankhalidst125051/cara3:latest  # Update with your actual Docker tags
+          tags: usmankhalidst125051/cara3:latest  # Update with your actual Docker tag
 
   deploy:
     needs: build-test
