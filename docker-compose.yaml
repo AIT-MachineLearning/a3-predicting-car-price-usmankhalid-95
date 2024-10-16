@@ -1,0 +1,16 @@
+services:
+  web:
+    command: streamlit run UI.py
+    image: usmankhalidst125051/cara3
+    platform: linux/amd64
+
+    build:
+      context: .
+      dockerfile: .Dockerfile
+
+    environment:
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+      - STREAMLIT_SERVER_PORT=8501
+      
+    ports:
+      - "8501:8501"
