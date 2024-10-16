@@ -6,7 +6,7 @@ services:
 
     build:
       context: .
-      dockerfile: .Dockerfile
+      dockerfile: .streamlit/streamlit/Dockerfile.streamlit  # Update path here
 
     environment:
       - STREAMLIT_SERVER_ADDRESS=0.0.0.0
