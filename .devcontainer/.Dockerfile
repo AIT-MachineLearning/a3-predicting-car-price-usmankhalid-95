@@ -18,3 +18,4 @@ RUN pip install --upgrade pip
 COPY ./source_code /root/source_code
 
 CMD tail -f /dev/null
+EXPOSE 8051
