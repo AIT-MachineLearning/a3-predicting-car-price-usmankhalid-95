@@ -1,6 +1,6 @@
 services:
   web:
-    command: streamlit run UI.py
+    command: streamlit run UI_3.py
     image: usmankhalidst125051/cara3
     platform: linux/amd64
 

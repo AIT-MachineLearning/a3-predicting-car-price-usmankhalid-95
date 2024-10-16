@@ -1,7 +1,7 @@
 services:
   dash:
     # This is for that asking the container to execute the main.py
-    command: streamlit run UI.py
+    command: streamlit run UI_3.py
     # The image I upload to my docker hub
     image: usmankhalidst125051/cara3:latest
     platform: linux/amd64
