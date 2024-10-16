@@ -36,7 +36,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: . 
-          file: .streamlit/streamlit/Dockerfile.streamlit  # Correct file path
+          file: Dockerfile  # Correct file path
           push: true
           tags: usmankhalidst125051/cara3:latest  # Update with your actual Docker tags
 

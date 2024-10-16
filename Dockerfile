@@ -12,6 +12,9 @@ RUN pip3 install pandas
 RUN pip install streamlit
 RUN pip install notebook
 RUN pip3 install mlflow
+COPY .streamlit/streamlit/requirements.txt .
+RUN pip install streamlit
+RUN pip install streamlit-option-menu
 
 RUN pip install --upgrade pip
 
