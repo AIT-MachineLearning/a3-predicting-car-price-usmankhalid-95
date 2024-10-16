@@ -14,6 +14,8 @@ year = st.number_input('Manufacturing Year', step=1)
 mileage = st.number_input('Car Mileage')
 engine = st.number_input('Engine Capacity')
 
+labels = ['Cheap', 'Average', 'Expensive', 'Very Expensive']
+
 if st.button("Predict Car Price"):
     input_data = pd.DataFrame(
         [[engine, mileage, year]],
@@ -21,4 +23,8 @@ if st.button("Predict Car Price"):
     )
     
     car_price = model.predict(input_data)
-    st.markdown(f'Estimated Car Price is : {car_price[0]}')
+    
+    price_label = labels[int(car_price[0])]
+    
+    st.markdown(f'Predicted Class: {int(car_price[0])}')
+    st.markdown(f'Estimated Car Price Label is: {price_label}')
