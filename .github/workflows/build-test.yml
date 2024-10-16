@@ -55,9 +55,6 @@ jobs:
           proxy_key: ${{ secrets.SSH_PRIVATE_KEY }}
           proxy_passphrase: ${{ secrets.KEY_PASSPHRASE }}
           script: |
+            cd home/st125051
             tag=${{ github.sha }} docker compose -f st125051/docker-compose.yaml down
             tag=${{ github.sha }} docker compose -f st125051/docker-compose.yaml up -d
-
-
-
-# jh
