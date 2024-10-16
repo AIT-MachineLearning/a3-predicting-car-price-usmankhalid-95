@@ -29,9 +29,6 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: usmankhalidst125051/cara3:latest
-          tags: |
-            type=sha,format=long
-            type=ref,event=branch
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -60,4 +57,5 @@ jobs:
             docker pull usmankhalidst125051/cara3:latest &&
             docker run -p 8501:8501 usmankhalidst125051/cara3:latest &&
             cd /home/st125051/st125051 &&
-            tag=${{ github.sha }} docker compose -f docker-compose.yaml up -d
+            tag=${{ github.sha }} &&
+            docker compose -f docker-compose.yaml up -d
