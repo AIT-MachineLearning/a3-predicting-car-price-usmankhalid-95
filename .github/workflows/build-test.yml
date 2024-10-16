@@ -27,7 +27,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: usmankhalidst125051/cara3
+          images: usmankhalidst125051/cara3:latest
           tags: |
             type=sha,format=long
             type=ref,event=branch
@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: . 
-          file: .Dockerfile  # Correct file path
+          file: .streamlit/streamlit/Dockerfile.streamlit  # Correct file path
           push: true
           tags: usmankhalidst125051/cara3:latest  # Update with your actual Docker tags
 
