@@ -15,7 +15,7 @@ RUN pip3 install mlflow
 
 RUN pip install --upgrade pip
 
-COPY ./source_code /root/source_code
+COPY ./.devcontainer/source_code /root/source_code
 
 CMD tail -f /dev/null
 EXPOSE 8501
